@@ -1,0 +1,67 @@
+{% extends "main.html" %}
+
+{% block content %}
+
+<div class="container">
+
+    <!-- CATEGORY FILTER -->
+    <div class="filters">
+        <a href="{% url 'home' %}">All</a>
+
+        {% for c in category %}
+           <a href="?cat={{ c|urlencode }}">{{ c }}</a>        
+        {% endfor %}
+
+        <a href="?filter=trending">Trending</a>
+        <a href="?filter=offer"> Offers</a>
+    </div>
+
+    <!--  MESSAGES -->
+    {% if no_match %}
+        <h3>No results found</h3>
+    {% endif %}
+
+    {% if trend %}
+        <h2>Trending Products</h2>
+    {% elif offer %}
+        <h2> Products on Offer</h2>
+    {% else %}
+        <h2>All Products</h2>
+    {% endif %}
+
+    <!-- PRODUCT GRID -->
+    <div class="grid">
+
+        {% for product in products %}
+            <div class="card">
+
+                <a href="{% url 'product_details' product.id %}">
+                    {% if product.image %}
+                        <img src="{{ product.image.url }}">
+                    {% endif %}
+                </a>
+
+                <h3>{{ product.name }}</h3>
+                <p class="price">₹{{ product.price }}</p>
+
+                <div class="tags">
+                    {% if product.trending %}
+                        <span> Trending</span>
+                    {% endif %}
+                    {% if product.offer %}
+                        <span>Offer</span>
+                    {% endif %}
+                </div>
+
+                <a href="{% url 'add_cart' product.id %}" class="btn">
+                    Add to Cart
+                </a>
+
+            </div>
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock %}

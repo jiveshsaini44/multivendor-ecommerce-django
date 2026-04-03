@@ -1,0 +1,22 @@
+{% extends "main.html" %}
+
+{% block content %}
+
+<div class="status-container">
+
+    <div class="status-box">
+
+        <div class="icon">⏳</div>
+
+        <h2>Account Under Review</h2>
+
+        <p>Your vendor account is currently being reviewed by the admin.</p>
+        <p>Please wait for approval. You will be able to access your dashboard once approved.</p>
+
+        <a href="{% url 'home' %}" class="btn">Go to Home</a>
+
+    </div>
+
+</div>
+
+{% endblock %}

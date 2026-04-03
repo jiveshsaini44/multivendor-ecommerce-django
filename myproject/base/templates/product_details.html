@@ -1,0 +1,52 @@
+{% extends "main.html" %}
+
+{% block content %}
+
+<div class="product-container">
+
+    <!-- LEFT: IMAGE -->
+    <div class="image-section">
+        {% if product.image %}
+            <img src="{{ product.image.url }}">
+        {% endif %}
+    </div>
+
+    <!-- RIGHT: DETAILS -->
+    <div class="details-section">
+
+        <h2>{{ product.name }}</h2>
+
+        <p class="price">₹{{ product.price }}</p>
+
+        <p class="desc">{{ product.description }}</p>
+
+        <!-- TAGS -->
+        <div class="tags">
+            {% if product.trending %}
+                <span class="trend">🔥 Trending</span>
+            {% endif %}
+
+            {% if product.offer %}
+                <span class="offer">💸 Offer</span>
+            {% endif %}
+        </div>
+
+        <!-- VENDOR (IMPORTANT for multi-vendor) -->
+        <p class="vendor">Sold by: {{ product.vendor }}</p>
+
+        <!-- ACTION BUTTONS -->
+        <div class="actions">
+            <a href="{% url 'add_cart' product.id %}" class="btn cart-btn">
+                Add to Cart
+            </a>
+
+            <a href="#" class="btn buy-btn">
+                Buy Now
+            </a>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

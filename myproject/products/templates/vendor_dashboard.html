@@ -1,0 +1,41 @@
+{% extends "main.html" %}
+{% load static %}
+{% block content %}
+    <div class="top-bar">
+        <h1>Welcome, {{ request.user.username }}</h1>
+        <a href="{% url 'add_product' %}" class="btn">+ Add Product</a>
+        <h2>Dashboard</h2>
+
+        <p>Total Products: {{ total_products }}</p>
+        <p>Total Stock: {{ total_stock }}</p>
+    </div>
+
+    <hr>
+
+    <h2>Your Products</h2>
+
+    {% if products %}
+        {% for product in products %}
+            <div class="product-card">
+                {% if product.image %}
+                   <img src="{{ product.image.url }}">
+                {% else %}
+                   <img src="{% static 'images/Default.jpg' %}">
+                {% endif %}
+                <h3>{{ product.name }}</h3>
+                <p><strong>Price:</strong> ₹{{ product.price }}</p>
+                <p><strong>Stock:</strong> {{ product.stock }}</p>
+                <p>{{ product.description }}</p>
+
+                <div class="actions">
+                    <a href="{% url 'edit_product' product.id %}">Edit</a>
+                    <a href="{% url 'delete_product' product.id %}" onclick="return confirm('Are you sure?')">Delete</a>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No products added yet.</p>
+
+    {% endif %}
+
+{% endblock %}

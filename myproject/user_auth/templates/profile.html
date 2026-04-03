@@ -1,0 +1,26 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div class="profile-container">
+
+    <div class="profile-box">
+
+        <h2>My Profile</h2>
+
+        <div class="profile-info">
+            <p><strong>Username:</strong> {{ request.user.username }}</p>
+            <p><strong>Email:</strong> {{ request.user.email }}</p>
+        </div>
+
+        <div class="profile-actions">
+            <a href="{% url 'new_pass' %}" class="btn change-pass">
+                Change Password
+            </a>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

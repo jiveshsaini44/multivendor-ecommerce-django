@@ -1,0 +1,45 @@
+{% extends "main.html" %} 
+
+{% block content %}
+
+<div class="user">
+    <h2>cart here</h2>
+    <center>
+        {% if cartProducts %}
+       <div class="cart-container">
+        
+
+    {% for i in cartProducts %}
+    <div class="cart-item">
+
+        <div class="left">
+            <h3>{{ i.pname }}</h3>
+            <p>₹{{ i.price }}</p>
+        </div>
+
+        <div class="middle">
+            <a href="{% url 'decrement' i.id %}">-</a>
+            <span>{{ i.quantity }}</span>
+            <a href="{% url 'increment' i.id %}">+</a>
+        </div>
+
+        <div class="right">
+            <p>₹{{ i.totalprice }}</p>
+            <a href="{% url 'remove' i.id %}" class="remove">Remove</a>
+        </div>
+
+    </div>
+    {% endfor %}
+
+</div>
+
+<h2 class="total">Total: ₹{{ total }}</h2>
+         
+    </center>
+    {% else %}
+  <h2>Your cart is empty 🛒</h2>
+  {% endif %}  
+</div>
+
+ {% endblock %} 
+

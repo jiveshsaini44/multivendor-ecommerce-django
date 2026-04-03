@@ -1,0 +1,43 @@
+{% extends "main.html" %}
+
+{% block content %}
+
+<div class="add-product-container">
+
+    <div class="add-product-box">
+
+        <h2>Add New Product</h2>
+
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <!-- NAME -->
+            <label>Product Name</label>
+            {{ form.name }}
+
+            <!-- PRICE -->
+            <label>Price</label>
+            {{ form.price }}
+
+            <!-- IMAGE -->
+            <label>Product Image</label>
+            {{ form.image }}
+
+            <!-- DESCRIPTION -->
+            <label>Description</label>
+            {{ form.description }}
+            
+            <label>Stock</label>
+            {{form.stock}}
+
+            <!-- CATEGORY -->
+            <label>Category</label>
+            {{ form.category }}
+            <button type="submit">Add Product</button>
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

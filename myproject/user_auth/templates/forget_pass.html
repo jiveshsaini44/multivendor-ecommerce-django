@@ -1,0 +1,31 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div class="forgot-container">
+
+    <div class="forgot-box">
+
+        <h2>Forgot Password</h2>
+
+        {% if error %}
+            <p class="error">User not found</p>
+        {% endif %}
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <input type="text" name="username" placeholder="Enter your username" required>
+
+            <button type="submit">Submit</button>
+        </form>
+
+        <p class="back-link">
+            <a href="{% url 'login_' %}">Back to Login</a>
+        </p>
+
+    </div>
+
+</div>
+
+{% endblock %}

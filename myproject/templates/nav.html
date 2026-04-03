@@ -1,0 +1,43 @@
+<nav class="navbar">
+
+    <!-- LOGO -->
+    <div class="logo">
+        <h1>ShopSphere</h1>
+    </div>
+
+    <!-- SEARCH BAR -->
+    {% if not search_bar %}
+    <form class="search-bar" action="">
+        <input type="text" name="q" placeholder="Search products...">
+        <button type="submit">🔍</button>
+    </form>
+    {% endif %}
+
+    <!-- NAV LINKS -->
+    <ul class="nav-links">
+
+        {% if user.is_authenticated %}
+
+            {% if request.user.role == 'buyer' %}
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'cart' %}">Cart ({{ cartProducts_count }})</a></li>
+                <li><a href="{% url 'profile' %}">Profile</a></li>
+                <li><a href="{% url 'support' %}">Support</a></li>
+                <li><a href="{% url 'knowus' %}">About</a></li>
+                <li><a href="{% url 'logout_' %}" class="logout">Logout</a></li>
+
+            {% elif request.user.role == 'vendor' %}
+                <li><a href="{% url 'vendor_dashboard' %}">Dashboard</a></li>
+                <li><a href="{% url 'logout_' %}" class="logout">Logout</a></li>
+            {% endif %}
+
+        {% else %}
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'support' %}">Support</a></li>
+            <li><a href="{% url 'knowus' %}">About</a></li>
+            <li><a href="{% url 'login_' %}" class="login">Login</a></li>
+        {% endif %}
+
+    </ul>
+
+</nav>

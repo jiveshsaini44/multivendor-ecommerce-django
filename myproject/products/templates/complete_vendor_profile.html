@@ -1,0 +1,39 @@
+{% extends "main.html" %}
+
+{% block content %}
+
+<div class="vendor-dashboard">
+
+    <!-- LEFT SIDEBAR -->
+    <div class="sidebar">
+        <h3>Vendor Panel</h3>
+        <a href="{% url 'vendor_dashboard' %}">Profile</a>
+        <a href="{% url 'add_product' %}">Add Product</a>
+        <a href="{% url 'my_products' %}">My Products</a>
+        <a href="{% url 'orders' %}">Orders</a>
+    </div>
+
+    <!-- RIGHT CONTENT -->
+    <div class="main-content">
+
+        <div class="vendor-box">
+            <h2>Store Profile</h2>
+
+            <form method="POST">
+                {% csrf_token %}
+
+                <label>Store Name</label>
+                <input type="text" name="store_name" value="{{ vendor.store_name }}" required>
+
+                <label>Store Description</label>
+                <textarea name="store_description" rows="4">{{ vendor.store_description }}</textarea>
+
+                <button type="submit">Save Profile</button>
+            </form>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
