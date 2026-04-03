@@ -7,10 +7,12 @@
 
     <!-- SEARCH BAR -->
     {% if not search_bar %}
+    
     <form class="search-bar" action="">
         <input type="text" name="q" placeholder="Search products...">
         <button type="submit">🔍</button>
     </form>
+    
     {% endif %}
 
     <!-- NAV LINKS -->
@@ -18,7 +20,7 @@
 
         {% if user.is_authenticated %}
 
-            {% if request.user.role == 'buyer' %}
+            {% if user.role == 'buyer' %}
                 <li><a href="{% url 'home' %}">Home</a></li>
                 <li><a href="{% url 'cart' %}">Cart ({{ cartProducts_count }})</a></li>
                 <li><a href="{% url 'profile' %}">Profile</a></li>
@@ -26,7 +28,7 @@
                 <li><a href="{% url 'knowus' %}">About</a></li>
                 <li><a href="{% url 'logout_' %}" class="logout">Logout</a></li>
 
-            {% elif request.user.role == 'vendor' %}
+            {% elif user.role == 'vendor' %}
                 <li><a href="{% url 'vendor_dashboard' %}">Dashboard</a></li>
                 <li><a href="{% url 'logout_' %}" class="logout">Logout</a></li>
             {% endif %}

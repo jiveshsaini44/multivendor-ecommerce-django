@@ -18,9 +18,9 @@
         {% for product in products %}
             <div class="product-card">
                 {% if product.image %}
-                   <img src="{{ product.image.url }}">
+                   <img src="{{ product.image.url }}" height="200px" width="200px">
                 {% else %}
-                   <img src="{% static 'images/Default.jpg' %}">
+                   <img src="{% static 'images/Default.jpg' %}" height="200px" width="200px">
                 {% endif %}
                 <h3>{{ product.name }}</h3>
                 <p><strong>Price:</strong> ₹{{ product.price }}</p>

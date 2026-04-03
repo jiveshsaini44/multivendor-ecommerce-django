@@ -18,12 +18,15 @@ def home(request):
     offer=False
     
     filter_type = request.GET.get('filter')
+    cat = request.GET.get('cat')
     
     if 'q' in request.GET:
             q = request.GET['q']
             products=Product.objects.filter(Q(name__icontains=q)|Q(description__icontains=q))
             if len(products)==0:
                 no_match=True
+    if cat:
+        products = Product.objects.filter(category__iexact=cat)            
     elif filter_type == 'trending':
         products = Product.objects.filter(trending=True)
 
@@ -40,6 +43,7 @@ def home(request):
     for i in a:
         if i.category not in pcategory:
             pcategory+=[i.category]
+           
         
     return render(request, 'home.html',{'products':products, 'no_match': no_match, 'category':pcategory,'cartProducts_count': cartProducts_count,'trend':trend,'offer':offer})
     

@@ -39,6 +39,8 @@ def add_product(request):
             product.save()
 
             return redirect('vendor_dashboard')
+        else:
+            print(form.errors)  # Debugging line to print form errors
     else:
         form = ProductForm()
 
